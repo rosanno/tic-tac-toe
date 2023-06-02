@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="container-md d-flex flex-column justify-content-center align-items-center">
+        <div class="custom-card shadow">
+          <div class="tools">
+            <div class="circle">
+              <span class="red box"></span>
+            </div>
+            <div class="circle">
+              <span class="yellow box"></span>
+            </div>
+            <div class="circle">
+              <span class="green box"></span>
+            </div>
+          </div>
+          <div class="card__content">
+            <h2 class="text-center mb-5">Tic Tac Toe</h2>
+
+            <div
+              class="d-flex flex-column justify-content-center align-items-center mode-container"
+            >
+              <h5 class="text-muted mb-4">Game modes</h5>
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="radio-inputs d-flex flex-column">
+                  <div class="d-flex align-items-center gap-3" id="playerOption">
+                    <label>
+                      <input class="radio-input player-mode" type="radio" name="player" value="1" />
+                      <span class="radio-tile">
+                        <span class="radio-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="feather feather-user"
+                          >
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                          </svg>
+                        </span>
+                        <span class="radio-label">Singleplayer</span>
+                      </span>
+                    </label>
+                    <label>
+                      <input class="radio-input player-mode" type="radio" name="player" value="2" />
+                      <span class="radio-tile">
+                        <span class="radio-icon">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="feather feather-users"
+                          >
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                          </svg>
+                        </span>
+                        <span class="radio-label">Multiplayer</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-none justify-content-center align-items-center" id="raceOption">
+                <div class="radio-inputs d-flex align-items-center gap-3">
+                  <label>
+                    <input class="radio-input race-mode" type="radio" name="race" value="5" />
+                    <span class="radio-tile">
+                      <span class="radio-icon">
+                        5
+                      </span>
+                      <span class="radio-label">Rounds</span>
+                    </span>
+                  </label>
+                  <label>
+                    <input class="radio-input race-mode" type="radio" name="player" value="10" />
+                    <span class="radio-tile">
+                      <span class="radio-icon">
+                        10
+                      </span>
+                      <span class="radio-label">Rounds</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="d-none flex-column justify-content-center align-items-center form-container"
+            >
+              <form>
+                <div class="wave-group">
+                  <input type="text" class="input player-one" />
+                  <span class="bar"></span>
+                  <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">l</span>
+                    <span class="label-char" style="--index: 2">a</span>
+                    <span class="label-char" style="--index: 3">y</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                    <span class="label-char" style="--index: 3">r</span>
+                    <span class="label-char" style="--index: 3">1</span>
+                  </label>
+                </div>
+                <div class="wave-group mt-4 input-two-container">
+                  <input type="text" class="input player-two" />
+                  <span class="bar"></span>
+                  <label class="label">
+                    <span class="label-char" style="--index: 0">P</span>
+                    <span class="label-char" style="--index: 1">l</span>
+                    <span class="label-char" style="--index: 2">a</span>
+                    <span class="label-char" style="--index: 3">y</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                    <span class="label-char" style="--index: 3">r</span>
+                    <span class="label-char" style="--index: 3">2</span>
+                  </label>
+                </div>
+                <button class="btn btn-danger w-100 mt-3" id="playBtn">Play</button>
+              </form>
+            </div>
+
+            <div class="d-none flex-column justify-content-center align-items-center" id="table">
+              <table>
+                <tr>
+                  <td class="cell" onclick="makeMove(0)"></td>
+                  <td class="cell vert" onclick="makeMove(1)"></td>
+                  <td class="cell" onclick="makeMove(2)"></td>
+                </tr>
+                <tr>
+                  <td class="cell hori" onclick="makeMove(3)"></td>
+                  <td class="cell vert hori" onclick="makeMove(4)"></td>
+                  <td class="cell hori" onclick="makeMove(5)"></td>
+                </tr>
+                <tr>
+                  <td class="cell" onclick="makeMove(6)"></td>
+                  <td class="cell vert" onclick="makeMove(7)"></td>
+                  <td class="cell" onclick="makeMove(8)"></td>
+                </tr>
+              </table>
+              <!-- <div id="status"></div> -->
+              <div class="d-flex justify-content-center gap-4 py-4">
+                <p id="p1"></p>
+                <span id="p1-score">0</span>
+                <p id="p2"></p>
+                <span id="p2-score">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
