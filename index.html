@@ -26,6 +26,7 @@
           <div class="card__content">
             <h2 class="text-center mb-5">Tic Tac Toe</h2>
 
+            <!-- Player selection section -->
             <div
               class="d-flex flex-column justify-content-center align-items-center mode-container"
             >
@@ -84,31 +85,31 @@
                   </div>
                 </div>
               </div>
+              <!-- End player selection section -->
 
+              <!-- Round selection section -->
               <div class="d-none justify-content-center align-items-center" id="raceOption">
                 <div class="radio-inputs d-flex align-items-center gap-3">
                   <label>
                     <input class="radio-input race-mode" type="radio" name="race" value="5" />
                     <span class="radio-tile">
-                      <span class="radio-icon">
-                        5
-                      </span>
+                      <span class="radio-icon"> 5 </span>
                       <span class="radio-label">Rounds</span>
                     </span>
                   </label>
                   <label>
                     <input class="radio-input race-mode" type="radio" name="player" value="10" />
                     <span class="radio-tile">
-                      <span class="radio-icon">
-                        10
-                      </span>
+                      <span class="radio-icon"> 10 </span>
                       <span class="radio-label">Rounds</span>
                     </span>
                   </label>
                 </div>
               </div>
             </div>
+            <!-- End round selection section -->
 
+            <!-- Inputs section -->
             <div
               class="d-none flex-column justify-content-center align-items-center form-container"
             >
@@ -142,8 +143,11 @@
                 <button class="btn btn-danger w-100 mt-3" id="playBtn">Play</button>
               </form>
             </div>
+            <!-- End inputs section -->
 
+            <!-- Table board section -->
             <div class="d-none flex-column justify-content-center align-items-center" id="table">
+              <p>Player turn: <span id="player-turn-label"></span></p>
               <table>
                 <tr>
                   <td class="cell" onclick="makeMove(0)"></td>
@@ -169,6 +173,7 @@
                 <span id="p2-score">0</span>
               </div>
             </div>
+            <!-- End table board section -->
           </div>
         </div>
       </div>

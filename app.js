@@ -4,12 +4,13 @@ var player1;
 var player2;
 var player1Score = 0;
 var player2Score = 0;
-var botScore = 0
+var botScore = 0;
 var totalRounds;
 const playerMode = document.querySelectorAll(".player-mode");
 const raceMode = document.querySelectorAll(".race-mode");
 const playerOneName = document.querySelector(".player-one");
 const playerTwoName = document.querySelector(".player-two");
+const playerTurnLabel = document.getElementById("player-turn-label");
 let gameMode = "";
 let selectedRound;
 
@@ -23,6 +24,7 @@ const setName = (selector, playerName) => {
 
 const startGame = (event) => {
   event.preventDefault();
+  playerTurnLabel.innerText = getPlayerName(currentPlayer);
 
   if (gameMode === "1") {
     setName("p1", playerOneName.value);
@@ -57,37 +59,32 @@ const makeMove = (index) => {
     renderBoard();
 
     if (checkWin()) {
-      // document.getElementById("status").innerText =
-      //   getPlayerName(currentPlayer) + " wins this round!";
-      Swal.fire(`${getPlayerName(currentPlayer)} win this round!`);
+      Swal.fire(`${getPlayerName(currentPlayer)} wins this round!`);
       updateScore();
       if (player1Score === totalRounds || player2Score === totalRounds) {
-        // document.getElementById("status").innerText = getWinner() + " wins the game!";
-        // Swal.fire(`${getWinner()} win the game`);
         Swal.fire({
-          title: `${getWinner()} win the game`,
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Play again',
+          title: `${getWinner()} wins the game`,
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "Play again",
           buttonsStyling: false,
           customClass: {
-            confirmButton: 'custom-button-class',
+            confirmButton: "custom-button-class",
           },
           preConfirm: () => {
             window.location.reload();
-          }
+          },
         });
-        // setTimeout(startGame, 1000);
       } else {
         setTimeout(startRound, 1000);
       }
     } else if (board.indexOf("") === -1) {
-      // document.getElementById("status").innerText = "It's a tie!";
       Swal.fire("It's a tie!");
       setTimeout(startRound, 1000);
     } else {
       currentPlayer = currentPlayer === "X" ? "O" : "X";
+      playerTurnLabel.innerText = getPlayerName(currentPlayer); // Update the player turn label
       if (gameMode === "1" && currentPlayer === "O") {
-        makeBotMove();
+        setTimeout(makeBotMove, 300);
       }
     }
   }
@@ -129,6 +126,8 @@ const checkWin = () => {
 };
 
 const makeBotMove = () => {
+  playerTurnLabel.innerText = getPlayerName(currentPlayer);
+
   var emptyCells = board.reduce(function (acc, cell, index) {
     if (cell === "") {
       acc.push(index);
