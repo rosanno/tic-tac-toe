@@ -59,11 +59,15 @@ const makeMove = (index) => {
     renderBoard();
 
     if (checkWin()) {
-      Swal.fire(`${getPlayerName(currentPlayer)} wins this round!`);
+      Swal.fire(`${getPlayerName(currentPlayer)} win this round!`);
       updateScore();
-      if (player1Score === totalRounds || player2Score === totalRounds) {
+      if (
+        player1Score === totalRounds ||
+        player2Score === totalRounds ||
+        botScore === totalRounds
+      ) {
         Swal.fire({
-          title: `${getWinner()} wins the game`,
+          title: `${getWinner()} win the game`,
           confirmButtonColor: "#3085d6",
           confirmButtonText: "Play again",
           buttonsStyling: false,
